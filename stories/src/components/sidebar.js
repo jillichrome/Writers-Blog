@@ -10,7 +10,6 @@ export default class Sidebar extends React.Component {
           <h2>Larry Fronk</h2>
           <p className='title'>Writer, City Planner, All Around Boss</p>
           <p className='genre'>Genre: Short Stories</p>
-          <i class='fa fa-glasses'></i><i class='fa fa-pencil-alt'></i>
         </div>
       </div>
     )
