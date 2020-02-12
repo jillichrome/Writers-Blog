@@ -1,6 +1,7 @@
 article {
   float: left;
   width: 75%;
+  padding-bottom: 5%;
 }
 aside {
   float: right;

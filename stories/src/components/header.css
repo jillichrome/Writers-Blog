@@ -14,3 +14,9 @@ h1 {
   font-family: 'Inconsolata';
   font-weight: bold;
 }
+
+@media (max-width:600px) {
+  img {
+    max-width: 100%;
+  }
+}
