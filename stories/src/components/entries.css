@@ -28,6 +28,11 @@ img {
   font-family: 'Shadows Into Light';
   font-size: 32px;
 }
+.article {
+  float: left;
+  width: 75%;
+  padding-bottom: 5%;
+}
 button {
   background-color: #B34B15;
   font-size: 14px;
@@ -36,6 +41,10 @@ button {
 }
 
 @media (max-width:600px) {
+  .article {
+    width: 100%;
+    height:auto;
+  }
   img {
     height:auto;
   }

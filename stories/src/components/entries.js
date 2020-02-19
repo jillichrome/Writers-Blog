@@ -2,18 +2,32 @@ import React from 'react';
 import './entries.css';
 import './arizona.jpg';
 
-export default class Posts extends React.Component {
-  render() {
-    return(
-      <div className='card'>
-        <img src={require('./arizona.jpg')} alt='' />
-        <div className='container'>
-          <p className='heading'>Title Heading</p>
-          <p>Date</p>
-          <p>Summary of story.</p>
-        </div>
-        <button>READ MORE!</button>
+const Post = ({story}) => {
+  return(
+    <div className='card'>
+      <img src={story.image} alt='' />
+      <div className='container'>
+        <p className='heading'>{story.title}</p>
+        <p>{story.date}</p>
+        <p>{story.summary}</p>
       </div>
-    )
-  }
+      <button>READ MORE!</button>
+    </div>
+  )
 }
+
+const Posts = ({stories}) => {
+  return(
+    <div className='article'>
+      { stories.map(story => {
+        return(
+          <article>
+            <Post story={story} key={story.id} />
+          </article>
+        )
+      })}
+    </div>
+  )
+}
+
+export default Posts;
