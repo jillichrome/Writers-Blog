@@ -1,6 +1,6 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import './entries.css';
-import './arizona.jpg';
 
 const Post = ({story}) => {
   return(
@@ -11,7 +11,7 @@ const Post = ({story}) => {
         <p>{story.date}</p>
         <p>{story.summary}</p>
       </div>
-      <button>READ MORE!</button>
+      <NavLink to={`/story/${story.title}`}><button>READ MORE!</button></NavLink>
     </div>
   )
 }
@@ -21,8 +21,8 @@ const Posts = ({stories}) => {
     <div className='article'>
       { stories.map(story => {
         return(
-          <article>
-            <Post story={story} key={story.id} />
+          <article key={story.id}>
+            <Post story={story} />
           </article>
         )
       })}

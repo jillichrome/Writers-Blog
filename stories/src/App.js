@@ -1,26 +1,20 @@
 import React from 'react';
-import './App.css';
-import Header from './components/header';
-import Posts from './components/entries';
-import Sidebar from './components/sidebar';
+import {createBrowserHistory} from 'history';
+import {Router, Switch, Route} from 'react-router-dom';
 
-const data = require('./components/data.json');
+import Home from './components/home.js';
+import Story from './components/story.js';
 
 class App extends React.Component {
   render() {
-    const stories = data.stories.story;
+    const history = createBrowserHistory();
     return (
-      <div>
-        <header>
-          <Header />
-        </header>
-        <section>
-          <Posts stories={stories} />
-          <aside>
-            <Sidebar />
-          </aside>
-        </section>
-      </div>
+      <Router history={history}>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/story/:storyTitle' component={Story} />
+        </Switch>
+      </Router>
     );
   }
 }

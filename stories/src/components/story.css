@@ -1,0 +1,17 @@
+.title {
+  font-family: 'Shadows Into Light';
+  font-size: 48px;
+  text-align: center;
+  padding-bottom: 5%;
+}
+.body {
+  font-family: 'Inconsolata';
+  font-size: 20px;
+  text-align: center;
+  display: block;
+}
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}

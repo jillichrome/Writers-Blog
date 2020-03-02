@@ -2,7 +2,7 @@
   "stories": {
     "story": [
       {
-        "id": 1,
+        "id": "1",
         "title": "First",
         "date": "2020-02-01",
         "summary": "This story is about...",
@@ -10,7 +10,7 @@
         "image": "https://www.worldtravelconnector.com/wp-content/uploads/2019/07/USA-southwest-road-trip_Sedona-mountains.jpg"
       },
       {
-        "id": 2,
+        "id": "2",
         "title": "Second",
         "date": "2020-02-15",
         "summary": "The story continues about...",
