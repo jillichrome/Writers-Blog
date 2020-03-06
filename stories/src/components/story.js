@@ -4,27 +4,42 @@ import './story.css';
 
 const data = require('./data.json');
 
-const StoryContent = () => {
-  const story = data.stories.story;
-  return(
-    <div>
-      <div className='title'>{story[0].title}</div>
-      <div className='body'>{story[0].storyBody}</div>
-    </div>
-  )
-}
-
 class Story extends React.Component {
   render() {
-    const story = data.stories.story;
-    console.log(story);
+    const stories = data.stories.story;
+
+    const story = (stories) => {
+      let storyInfo;
+      let current;
+      const name = this.props.match.params.storyTitle;
+      for(let i=0; i < stories.length; i++) {
+        storyInfo = stories[i];
+        if(name === storyInfo["title"]) {
+          current = stories[i];
+        }
+      }
+      return current
+    }
+
+    const outputHtml = () => {
+      const info = story(stories);
+      const name = this.props.match.params.storyTitle;
+      if(name !== info["title"]) return null;
+      return(
+        <div>
+          <div className='storytitle'>{info["title"]}</div>
+          <div className='body'>{info["storyBody"]}</div>
+        </div>
+      )
+    }
+
     return(
       <div>
         <header>
           <Header />
         </header>
         <section>
-          <StoryContent story={story} />
+          {outputHtml()}
         </section>
       </div>
     )
