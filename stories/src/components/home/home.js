@@ -1,10 +1,10 @@
 import React from 'react';
 import './home.css';
-import Header from './header';
+import Header from '../header/header.js';
 import Posts from './entries';
 import Sidebar from './sidebar';
 
-const data = require('./data.json');
+const data = require('../data.json');
 
 class Home extends React.Component {
   render() {

@@ -2,7 +2,7 @@ import React from 'react';
 import {createBrowserHistory} from 'history';
 import {Router, Switch, Route} from 'react-router-dom';
 
-import Home from './components/home.js';
+import Home from './components/home/home.js';
 import Story from './components/story.js';
 
 class App extends React.Component {

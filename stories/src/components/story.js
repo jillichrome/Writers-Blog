@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './header';
+import Header from './header/header.js';
 import './story.css';
 
 const data = require('./data.json');
