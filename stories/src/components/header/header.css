@@ -34,6 +34,12 @@ h1 {
   font-weight: bold;
 }
 
+@media (max-width:1200px) {
+  img {
+    max-width: 100%;
+  }
+}
+
 @media (max-width:600px) {
   img {
     max-width: 100%;

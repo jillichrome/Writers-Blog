@@ -1,0 +1,46 @@
+h3 {
+  font-family: 'Inconsolata';
+  color: #ffffff;
+}
+
+form {
+  position: absolute;
+  margin-top: 2%;
+  margin-left: 43%;
+  padding: 15px 75px 15px 75px;
+  background-color: #208078;
+}
+
+label {
+  display: inline-block;
+  float: left;
+  clear: left;
+  width: 150px;
+  text-align: left;
+  font-family: 'Inconsolata';
+  color: #ffffff;
+}
+
+input[type=text], input[type=email], input[type=password] {
+  margin: 8px 0;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+  width: 100%;
+}
+
+button {
+  margin-top: 12px;
+}
+
+@media (max-width:1200px) {
+  form {
+    margin-left: 35%;
+  }
+}
+
+@media (max-width:600px) {
+  form {
+    margin-left: 10%;
+  }
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from '../header/header.js';
+import './auth.css';
 
 class SignUp extends React.Component {
   state = {
@@ -22,8 +24,11 @@ class SignUp extends React.Component {
   render() {
     return(
       <div>
+        <header>
+          <Header />
+        </header>
         <form onSubmit={this.handleSubmit}>
-          <h5>Sign Up</h5>
+          <h3>Sign Up</h3>
           <div>
             <label htmlFor="firstName">First Name</label>
             <input type="text" id='firstName' onChange={this.handleChange}></input>
