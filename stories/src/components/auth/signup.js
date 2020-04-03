@@ -18,8 +18,31 @@ class SignUp extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
-  }
+    const data = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password
+    }
+
+    const url = '/signup';
+    const options = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(data)
+    }
+
+    if(this.state.firstName !== '' && this.state.lastName !== ''
+      && this.state.email !== '' && this.state.password !== '') {
+        fetch(url, options).then(function(response) {
+          console.log(response);
+        });
+      }
+    }
 
   render() {
     return(
@@ -46,7 +69,7 @@ class SignUp extends React.Component {
             <input type="password" id='password' onChange={this.handleChange}></input>
           </div>
           <div>
-            <button>Sign Up</button>
+            <button type="Submit">Sign Up</button>
           </div>
         </form>
       </div>
@@ -55,3 +78,20 @@ class SignUp extends React.Component {
 }
 
 export default SignUp;
+
+/*
+.then(function(obj) {
+  window.alert('User created!');
+  console.log(obj);
+  console.log('Please work');
+}).catch(error => console.log(error))
+}
+
+window.alert('User created!');
+console.log(res.data);
+this.setState({
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: ''
+  */
