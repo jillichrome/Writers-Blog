@@ -78,20 +78,3 @@ class SignUp extends React.Component {
 }
 
 export default SignUp;
-
-/*
-.then(function(obj) {
-  window.alert('User created!');
-  console.log(obj);
-  console.log('Please work');
-}).catch(error => console.log(error))
-}
-
-window.alert('User created!');
-console.log(res.data);
-this.setState({
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: ''
-  */

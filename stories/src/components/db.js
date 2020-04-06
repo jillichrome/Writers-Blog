@@ -9,7 +9,6 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 const userCtr = require('./api_routes');
-//const userRouter = require('./routes');
 
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}).catch(error => console.log(error))
 
