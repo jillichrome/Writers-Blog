@@ -26,6 +26,7 @@ app.all('/*', function(req, res, next) {
 })
 
 app.post('/signup', userCtr.createUser);
+app.post('/signin', userCtr.getUser);
 
 app.listen(PORT, function() {
   console.log('Server is running at PORT:', PORT);

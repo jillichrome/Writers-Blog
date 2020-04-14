@@ -8,7 +8,7 @@ class SignUp extends React.Component {
     lastName: '',
     email: '',
     password: ''
-  }
+  };
 
   handleChange = (e) => {
     this.setState({
@@ -38,11 +38,18 @@ class SignUp extends React.Component {
 
     if(this.state.firstName !== '' && this.state.lastName !== ''
       && this.state.email !== '' && this.state.password !== '') {
-        fetch(url, options).then(function(response) {
-          console.log(response);
-        });
-      }
+      fetch(url, options).then(response => {
+        if(response.status === 200) {
+          this.props.history.push('/');
+        } else {
+          const error = new Error(response.error);
+          throw error;
+        }
+      }).catch(err => {
+        console.log(err);
+      });
     }
+  }
 
   render() {
     return(

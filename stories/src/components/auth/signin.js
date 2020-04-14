@@ -16,7 +16,34 @@ class SignIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    const url = '/signin';
+    const options = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(user)
+    }
+
+    if(this.state.email !== '' && this.state.password !== ''){
+      fetch(url, options).then(response => {
+        if(response.status === 200) {
+          this.props.history.push('/')
+        } else {
+          const error = new Error(response.error);
+          throw error;
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    }
   }
 
   render() {
