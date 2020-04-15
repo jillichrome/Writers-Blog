@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Header from '../header/header.js';
 import './auth.css';
 
@@ -35,7 +36,7 @@ class SignIn extends React.Component {
     if(this.state.email !== '' && this.state.password !== ''){
       fetch(url, options).then(response => {
         if(response.status === 200) {
-          this.props.history.push('/')
+          this.props.history.push('/home')
         } else {
           const error = new Error(response.error);
           throw error;
@@ -63,7 +64,7 @@ class SignIn extends React.Component {
             <input type="password" id='password' onChange={this.handleChange}></input>
           </div>
           <div>
-            <button>Login</button>
+            <Link to='/home'><button>Login</button></Link>
           </div>
         </form>
       </div>

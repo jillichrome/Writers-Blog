@@ -6,6 +6,7 @@ import Home from './components/home/home.js';
 import Story from './components/story.js';
 import SignUp from './components/auth/signup.js';
 import SignIn from './components/auth/signin.js';
+import SignedIn from './components/signedIn/signedIn.js';
 
 class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class App extends React.Component {
           <Route path='/story/:storyTitle' component={Story} />
           <Route path='/signup' component={SignUp} />
           <Route path='/signin' component={SignIn} />
+          <Route exact path='/home' component={SignedIn} />
         </Switch>
       </Router>
     );

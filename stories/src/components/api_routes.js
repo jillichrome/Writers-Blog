@@ -20,7 +20,7 @@ exports.createUser = async function(req, res, next) {
   try {
     const savedUser = await newUser.save();
     if(savedUser) {
-      return res.redirect('/');
+      return res.redirect('/home');
     };
   } catch(err) {
     return next(err);
@@ -37,7 +37,7 @@ exports.getUser = async function(req, res, next) {
     });
     Bcrypt.compare(req.body.password, user.password, function(err, result) {
       if(result === true) {
-        return res.redirect('/');
+        return res.redirect('/home');
       } else {
         return res.send('Invalid password');
       }
