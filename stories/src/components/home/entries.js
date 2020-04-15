@@ -5,7 +5,7 @@ import './entries.css';
 const Post = ({story}) => {
   return(
     <div className='card'>
-      <img src={story.image} alt='' />
+      <img className='card-img' src={story.image} alt='' />
       <div className='container'>
         <p className='heading'>{story.title}</p>
         <p>{story.date}</p>

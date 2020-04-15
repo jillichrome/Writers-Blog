@@ -4,6 +4,7 @@ header {
 }
 img {
   width: 100%;
+  object-fit: cover;
 }
 h1 {
   position: absolute;
@@ -41,5 +42,11 @@ h1 {
 @media (max-width:600px) {
   img {
     max-width: 100%;
+  }
+  .up {
+    left: 72%;
+  }
+  .in {
+    left: 92%;
   }
 }

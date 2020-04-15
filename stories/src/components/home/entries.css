@@ -16,9 +16,10 @@
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-img {
-  max-width: 100%;
+.card-img {
+  width: 800px;
   height: 600px;
+  object-fit: cover;
 }
 .container {
   padding: 2px 16px;
@@ -38,6 +39,7 @@ button {
   font-size: 14px;
   color: #ffffff;
   cursor: pointer;
+  padding: 10px 24px;
 }
 
 @media (max-width:600px) {
