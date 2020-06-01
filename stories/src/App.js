@@ -18,7 +18,7 @@ class App extends React.Component {
           <Route path='/story/:storyTitle' component={Story} />
           <Route path='/signup' component={SignUp} />
           <Route path='/signin' component={SignIn} />
-          <Route exact path='/home' component={SignedIn} />
+          <Route exact path='/home/:_id' component={SignedIn} />
         </Switch>
       </Router>
     );

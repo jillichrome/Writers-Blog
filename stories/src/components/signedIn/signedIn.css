@@ -12,6 +12,11 @@ section:after {
   display: table;
   clear: both;
 }
+.welcome {
+  margin-left: 50%;
+  font-family: 'Inconsolata';
+  color: #B34B15;
+}
 @media (max-width: 600px) {
   article, aside {
     width: 100%;

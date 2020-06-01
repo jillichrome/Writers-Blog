@@ -1,6 +1,69 @@
 const User = require('./schema.js');
-const Bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const JWT_KEY = 'COVID2020';
 
+exports.createUser = (req, res) => {
+  const user = new User(req.body);
+  user.save((err, result) => {
+    if(err) {
+      return res.status(400).send({msg: "Failed to create User"});
+    }
+    return res.status(200).send({msg: "New user registered"});
+  })
+}
+
+exports.loginUser = async(req, res) => {
+  try{
+    const user = await User.findOne({email: req.body.email});
+    if(!User.findByCredentials(req.body.email, req.body.password)) {
+      return res.status(401).send({msg: 'Invalid credentials!'});
+    }
+    const token = jwt.sign({_id:user._id}, JWT_KEY);
+    res.cookie('t', token, {expire: new Date() + 9999});
+    return res.json({
+      token,
+      user: {_id:user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email
+      }
+    });
+  } catch(error) {
+    console.log(error);
+  }
+}
+
+exports.logoutUser = (req, res) => {
+  res.clearCookie('t');
+  return res.status(200).send({msg: 'Successfully logged out!'});
+}
+
+exports.findUserById = async(req, res, next, id) => {
+  try {
+    if(mongoose.Types.ObjectId.isValid(id)) {
+      console.log(mongoose.Types.ObjectId(id));
+      console.log(req.params._id);
+      await User.findById(req.params._id, function(err, user) {
+        if(err) {
+          next(err);
+        }
+        req.profile = user;
+        console.log(req.profile);
+        next();
+      })
+    }
+  } catch(error) {
+    console.log(error);
+  }
+}
+
+exports.findUser = (req, res) => {
+  return res.json(req.profile);
+}
+
+
+/*
 const saltrounds = 10;
 
 exports.createUser = async function(req, res, next) {
@@ -26,23 +89,4 @@ exports.createUser = async function(req, res, next) {
     return next(err);
   }
 }
-
-exports.getUser = async function(req, res, next) {
-  try {
-    const user = await User.findOne({email: req.body.email}, function(err, result) {
-      if(err) {
-        return res.send(err);
-      };
-      return result;
-    });
-    Bcrypt.compare(req.body.password, user.password, function(err, result) {
-      if(result === true) {
-        return res.redirect('/home');
-      } else {
-        return res.send('Invalid password');
-      }
-    });
-  } catch(error) {
-    next(error);
-  }
-}
+*/

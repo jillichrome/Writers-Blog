@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import Header from '../header/header.js';
 import './auth.css';
 
@@ -30,17 +29,15 @@ class SignIn extends React.Component {
         'Content-Type': 'application/json; charset=UTF-8',
         'Access-Control-Allow-Origin': '*'
       },
+      credentials: 'include',
       body: JSON.stringify(user)
     }
 
     if(this.state.email !== '' && this.state.password !== ''){
       fetch(url, options).then(response => {
-        if(response.status === 200) {
-          this.props.history.push('/home')
-        } else {
-          const error = new Error(response.error);
-          throw error;
-        }
+        response.json().then(data => {
+          this.props.history.push(`/home/${data.user._id}`)
+        });
       }).catch(err => {
         console.log(err);
       })
@@ -56,7 +53,7 @@ class SignIn extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <h3>Sign In</h3>
           <div>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="username">Email</label>
             <input type="email" id='email' onChange={this.handleChange}></input>
           </div>
           <div>
@@ -64,7 +61,7 @@ class SignIn extends React.Component {
             <input type="password" id='password' onChange={this.handleChange}></input>
           </div>
           <div>
-            <Link to='/home'><button>Login</button></Link>
+            <button>Login</button>
           </div>
         </form>
       </div>
