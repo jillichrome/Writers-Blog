@@ -11,6 +11,7 @@ export default class Header extends React.Component {
     const history = createBrowserHistory();
     return(
       <header>
+        <NavLink to='/home/:_id/create'><h5 className='up'>Create Story</h5></NavLink>
         <NavLink to='/signout' onClick={() => auth.signoutUser()}><h5 className='in'>Sign Out</h5></NavLink>
         <img src={require('./blog-header-background.jpg')} alt='' />
         <Link to='/'><h1>LITERARY LARRY</h1></Link>

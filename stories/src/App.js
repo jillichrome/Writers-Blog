@@ -7,6 +7,7 @@ import Story from './components/story.js';
 import SignUp from './components/auth/signup.js';
 import SignIn from './components/auth/signin.js';
 import SignedIn from './components/signedIn/signedIn.js';
+import Create from './components/signedIn/create.js';
 import SignedOut from './components/signedIn/signedOut.js';
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
           <Route path='/signup' component={SignUp} />
           <Route path='/signin' component={SignIn} />
           <Route exact path='/home/:_id' component={SignedIn} />
+          <Route path='/home/:_id/create' component={Create} />
           <Route path='/signout' component={SignedOut} />
         </Switch>
       </Router>

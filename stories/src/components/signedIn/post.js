@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './header/header.js';
-import './story.css';
+import './post.css';
 
 const data = require('../data.json');
 
