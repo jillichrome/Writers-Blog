@@ -1,28 +1,28 @@
 import { signoutUser } from './api-user.js';
+import Cookies from 'js-cookie';
 
 const auth = {
   isauthenticated() {
-    if(sessionStorage.getItem('jwt')) {
-      return JSON.parse(sessionStorage.getItem('jwt'));
+    if(Cookies.get('t')) {
+      return Cookies.get('t');
     } else {
       return false;
     }
   },
-
+/*
   authenticated(jwt, cb) {
     if(typeof window !== 'undefined') {
-      sessionStorage.setItem('jwt', JSON.stringify(jwt));
+      Cookies.set('token', JSON.stringify(token));
     }
     cb();
   },
-
-  signoutUser(cb) {
+*/
+  signoutUser() {
     if(typeof window !== 'undefined') {
-      sessionStorage.removeItem('jwt');
+      Cookies.remove('t');
     }
-    cb();
-    signoutUser.then(data => {
-      document.cookie = 't=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    signoutUser(data => {
+      document.cookie = '';
     })
   }
 };

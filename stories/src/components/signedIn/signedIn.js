@@ -4,7 +4,6 @@ import Header from './header.js';
 import Posts from './entries.js';
 import Sidebar from '../home/sidebar.js';
 import auth from '../auth-helper.js';
-import {findUser} from '../api-user.js';
 
 const data = require('../data.json');
 
@@ -21,21 +20,25 @@ class SignedIn extends React.Component {
     const id = this.props.match.params._id;
     const jwt = auth.isauthenticated();
 
-    findUser(
-      {
-        _id: id
-      },
-      {t : jwt.token}).then(data => {
-        if(data.error) {
-          this.props.history.push('/signin');
-        } else {
-          this.setState({user: data});
-        }
-    });
+    fetch('/home/' + id, {
+      method: 'GET',
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + jwt
+      }
+    }).then(response => {
+      response.json().then(response => {
+        this.setState({user: response});
+      })
+    }).catch(error => console.log(error));
   }
 
   render() {
     const stories = data.stories.story;
+    console.log(this.state.user);
     return (
       <div>
         <header>

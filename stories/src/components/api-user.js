@@ -1,16 +1,3 @@
-export const findUser = (params, credentials) => {
-  return fetch('/home/' + params._id, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + credentials.t
-    }
-  }).then(response => {
-    return response.json();
-  }).catch(error => console.log(error));
-};
-
 export const deleteUser = (params, credentials) => {
   return fetch('/home/' + params._id, {
     method:'GET',
@@ -25,7 +12,8 @@ export const deleteUser = (params, credentials) => {
 
 export const signoutUser = () => {
   return fetch('/signout', {
-    method: 'GET'
-  }).then(response => response.json())
+    method: 'POST',
+    credentials: 'same-origin'
+  }).then(response => console.log())
   .catch(error => console.log(error));
 }

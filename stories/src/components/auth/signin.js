@@ -5,7 +5,8 @@ import './auth.css';
 class SignIn extends React.Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    token: ''
   }
 
   handleChange = (e) => {
@@ -27,16 +28,21 @@ class SignIn extends React.Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true'
       },
       credentials: 'include',
-      body: JSON.stringify(user)
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        Authorization: this.state.token
+      })
     }
 
     if(this.state.email !== '' && this.state.password !== ''){
       fetch(url, options).then(response => {
         response.json().then(data => {
-          this.props.history.push(`/home/${data.user._id}`)
+          this.props.history.push(`/home/${data.user._id}`);
         });
       }).catch(err => {
         console.log(err);

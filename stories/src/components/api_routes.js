@@ -13,7 +13,7 @@ exports.createUser = (req, res) => {
   })
 }
 
-exports.loginUser = async(req, res) => {
+exports.signinUser = async(req, res) => {
   try{
     const user = await User.findOne({email: req.body.email});
     if(!User.findByCredentials(req.body.email, req.body.password)) {
@@ -22,7 +22,7 @@ exports.loginUser = async(req, res) => {
     const token = jwt.sign({_id:user._id}, JWT_KEY);
     res.cookie('t', token, {expire: new Date() + 9999});
     return res.json({
-      token,
+      token: token,
       user: {_id:user.id,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -34,22 +34,19 @@ exports.loginUser = async(req, res) => {
   }
 }
 
-exports.logoutUser = (req, res) => {
-  res.clearCookie('t');
+exports.signoutUser = (req, res) => {
+  res.clearCookie(JWT_KEY);
   return res.status(200).send({msg: 'Successfully logged out!'});
 }
 
 exports.findUserById = async(req, res, next, id) => {
   try {
     if(mongoose.Types.ObjectId.isValid(id)) {
-      console.log(mongoose.Types.ObjectId(id));
-      console.log(req.params._id);
       await User.findById(req.params._id, function(err, user) {
         if(err) {
           next(err);
         }
         req.profile = user;
-        console.log(req.profile);
         next();
       })
     }
@@ -61,32 +58,3 @@ exports.findUserById = async(req, res, next, id) => {
 exports.findUser = (req, res) => {
   return res.json(req.profile);
 }
-
-
-/*
-const saltrounds = 10;
-
-exports.createUser = async function(req, res, next) {
-  const user = await User.findOne({email: req.body.email});
-  if(user) {
-    return res.status(400).json({email: "Email already exists"});
-    next();
-  };
-  const hashPassword = await Bcrypt.hash(req.body.password, saltrounds);
-  const newUser = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: hashPassword
-  });
-
-  try {
-    const savedUser = await newUser.save();
-    if(savedUser) {
-      return res.redirect('/home');
-    };
-  } catch(err) {
-    return next(err);
-  }
-}
-*/

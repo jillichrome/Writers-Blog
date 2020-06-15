@@ -32,9 +32,10 @@ app.use(session({
 const router = require('./api_routes');
 
 app.post('/signup', router.createUser);
-app.post('/signin', router.loginUser);
+app.post('/signin', router.signinUser);
 app.get('/home/:_id', router.findUser);
 app.param('_id', router.findUserById);
+app.post('/signout', router.signoutUser);
 
 app.listen(PORT, function() {
   console.log('Server is running at PORT:', PORT);
