@@ -21,7 +21,7 @@ class App extends React.Component {
           <Route path='/signup' component={SignUp} />
           <Route path='/signin' component={SignIn} />
           <Route exact path='/home/:_id' component={SignedIn} />
-          <Route path='/home/:_id/create' component={Create} />
+          <Route path='/create' component={Create} />
           <Route path='/signout' component={SignedOut} />
         </Switch>
       </Router>

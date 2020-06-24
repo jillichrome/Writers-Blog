@@ -17,10 +17,6 @@ class SignIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const user = {
-      email: this.state.email,
-      password: this.state.password
-    };
 
     const url = '/signin';
     const options = {

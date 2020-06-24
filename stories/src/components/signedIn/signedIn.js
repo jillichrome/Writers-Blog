@@ -38,7 +38,6 @@ class SignedIn extends React.Component {
 
   render() {
     const stories = data.stories.story;
-    console.log(this.state.user);
     return (
       <div>
         <header>
