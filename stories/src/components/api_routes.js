@@ -62,7 +62,6 @@ exports.findUser = (req, res) => {
 
 exports.submitStory = (req, res) => {
   const post = new Post(req.body);
-  console.log(post);
   post.save((err, result) => {
     if(err) {
       return res.status(400).send({msg: "Failed to submit story"});

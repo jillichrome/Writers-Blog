@@ -34,11 +34,13 @@ class Create extends React.Component {
 
     fetch('/create', options).then(response => {
       response.json().then(data => {
-        console.log(data);
+        alert("Story successfully saved!");
       });
     }).catch(err => {
       console.log(err);
     })
+
+    this.setState({title:'', story: ''});
   };
 
   render() {
@@ -62,7 +64,6 @@ class Create extends React.Component {
             <button>Submit Story</button>
           </div>
         </form>
-        <p>{this.state.title}</p>
       </div>
     )
   }
