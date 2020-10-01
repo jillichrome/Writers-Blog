@@ -1,5 +1,5 @@
 export const deleteUser = (params, credentials) => {
-  return fetch('/home/' + params._id, {
+  return fetch('/home/' + params.id, {
     method:'GET',
     headers: {
       'Accept': 'application/json',

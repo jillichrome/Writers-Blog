@@ -16,15 +16,16 @@ exports.createUser = (req, res) => {
 
 exports.signinUser = async(req, res) => {
   try{
-    const user = await User.findOne({email: req.body.email});
-    if(!User.findByCredentials(req.body.email, req.body.password)) {
+    const user = User.findByCredentials(req.body.email, req.body.password);
+    if (!user) {
       return res.status(401).send({msg: 'Invalid credentials!'});
     }
-    const token = jwt.sign({_id:user._id}, JWT_KEY);
-    res.cookie('t', token, {expire: new Date() + 9999});
+    const token = jwt.sign({id: user._id}, JWT_KEY);
+    // [TODO] Need to set a cookie here also
     return res.json({
-      token: token,
-      user: {_id:user.id,
+      user: {
+        token: token,
+        id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email
@@ -35,18 +36,14 @@ exports.signinUser = async(req, res) => {
   }
 }
 
-exports.signoutUser = (req, res) => {
-  res.clearCookie(JWT_KEY);
-  return res.status(200).send({msg: 'Successfully logged out!'});
-}
-
 exports.findUserById = async(req, res, next, id) => {
   try {
     if(mongoose.Types.ObjectId.isValid(id)) {
-      await User.findById(req.params._id, function(err, user) {
+      await User.findById(req.params.id, function(err, user) {
         if(err) {
           next(err);
         }
+        user.id = user._id;
         req.profile = user;
         next();
       })
@@ -69,10 +66,19 @@ exports.submitStory = (req, res) => {
     return res.status(200).send({msg: "New story saved!"})
   })
 }
-/*
+
 exports.readStory = async(req, res) => {
   try{
     const post = await Post.findOne({title: req.body.title});
+    console.log(post);
+    return res.json({
+      post: {
+        title: post.title,
+        date: post.date,
+        story: post.story
+      }
+    });
+  } catch(error) {
+    console.log(error);
   }
 }
-*/

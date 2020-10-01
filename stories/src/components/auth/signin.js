@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from '../header/header.js';
+import { makeRequest } from '../../requests.js';
+import auth from '../auth-helper.js';
 import './auth.css';
 
 class SignIn extends React.Component {
@@ -17,32 +19,22 @@ class SignIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    const url = '/signin';
-    const options = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true'
-      },
-      credentials: 'include',
-      body: JSON.stringify({
+    if(this.state.email !== '' && this.state.password !== ''){
+      makeRequest('POST', '/signin', {
         email: this.state.email,
         password: this.state.password,
-        Authorization: this.state.token
-      })
-    }
-
-    if(this.state.email !== '' && this.state.password !== ''){
-      fetch(url, options).then(response => {
+      }).then(response => {
         response.json().then(data => {
-          this.props.history.push(`/home/${data.user._id}`);
-        });
+          auth.setUser(data.user);
+          this.props.history.push(`/home/${data.user.id}`);
+        })
       }).catch(err => {
         console.log(err);
       })
+    }
+    else{
+      // [TODO] Do form validation here, e.g. "please input a valid email
+      //        address"
     }
   }
 

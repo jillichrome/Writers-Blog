@@ -1,29 +1,24 @@
 import { signoutUser } from './api-user.js';
-import Cookies from 'js-cookie';
+import { makeRequest } from '../requests.js';
+
+let user;
 
 const auth = {
-  isauthenticated() {
-    if(Cookies.get('t')) {
-      return Cookies.get('t');
-    } else {
-      return false;
-    }
+  setUser(newUser) {
+    user = newUser;
   },
-/*
-  authenticated(jwt, cb) {
-    if(typeof window !== 'undefined') {
-      Cookies.set('token', JSON.stringify(token));
-    }
-    cb();
+
+  getUser() {
+    // [TODO] Check cookies for user ID
+    return user;
   },
-*/
-  signoutUser() {
-    if(typeof window !== 'undefined') {
-      Cookies.remove('t');
-    }
-    signoutUser(data => {
-      document.cookie = '';
-    })
+
+  isAuthenticated() {
+    return user.token ? true : false;
+  },
+
+  signOut() {
+    user = null;
   }
 };
 

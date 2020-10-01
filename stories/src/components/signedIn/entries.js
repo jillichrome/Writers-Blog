@@ -1,35 +1,39 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import auth from '../auth-helper.js';
+import {makeRequest} from '../../requests.js';
 import './entries.css';
 
-const Post = ({story}) => {
-  return(
-    <div className='card'>
-      <img className='card-img' src={story.image} alt='' />
-      <div className='container'>
-        <p className='heading'>{story.title}</p>
-        <p>{story.date}</p>
-        <p>{story.summary}</p>
+
+class Post extends React.Component {
+  state = {
+    post: ''
+  }
+
+  componentDidMount = () => {
+    makeRequest('GET', `/home/${auth.getUser()}`).then(response => {
+      response.json().then(data => {
+        console.log(data);
+        this.setState({
+          post: data
+        })
+      })
+    }).catch(error => console.log(error));
+  }
+
+  render() {
+    return(
+      <div className='card'>
+        <div className='container'>
+          <p className='heading'>{this.state.post.title}</p>
+          <p>{this.state.post.date}</p>
+        </div>
+        <NavLink to={`/story/${this.state.post.title}`}><button>READ MORE!</button></NavLink>
+        <button className='change'>Edit</button>
+        <button className='delete'>Remove</button>
       </div>
-      <NavLink to={`/story/${story.title}`}><button>READ MORE!</button></NavLink>
-      <button className='change'>Edit</button>
-      <button className='delete'>Remove</button>
-    </div>
-  )
+    )
+  }
 }
 
-const Posts = ({stories}) => {
-  return(
-    <div className='article'>
-      { stories.map(story => {
-        return(
-          <article key={story.id}>
-            <Post story={story} />
-          </article>
-        )
-      })}
-    </div>
-  )
-}
-
-export default Posts;
+export default Post;
