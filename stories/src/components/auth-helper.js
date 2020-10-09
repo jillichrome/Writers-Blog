@@ -1,5 +1,4 @@
 import { signoutUser } from './api-user.js';
-import { makeRequest } from '../requests.js';
 
 let user;
 

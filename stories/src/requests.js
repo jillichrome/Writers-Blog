@@ -14,8 +14,8 @@ export async function makeRequest(method, url, data={}) {
   }
 
   return await fetch(url, {
-    method,
-    headers,
+    method: method,
+    headers: headers,
     body: JSON.stringify(data),
     withCredentials: true,
     credentials: 'include'

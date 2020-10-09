@@ -16,7 +16,7 @@ exports.createUser = (req, res) => {
 
 exports.signinUser = async(req, res) => {
   try{
-    const user = User.findByCredentials(req.body.email, req.body.password);
+    const user = await User.findByCredentials(req.body.email, req.body.password);
     if (!user) {
       return res.status(401).send({msg: 'Invalid credentials!'});
     }

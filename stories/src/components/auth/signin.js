@@ -19,12 +19,14 @@ class SignIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     if(this.state.email !== '' && this.state.password !== ''){
       makeRequest('POST', '/signin', {
         email: this.state.email,
-        password: this.state.password,
+        password: this.state.password
       }).then(response => {
         response.json().then(data => {
+          console.log(data);
           auth.setUser(data.user);
           this.props.history.push(`/home/${data.user.id}`);
         })
