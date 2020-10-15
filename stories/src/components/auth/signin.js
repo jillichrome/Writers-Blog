@@ -26,7 +26,6 @@ class SignIn extends React.Component {
         password: this.state.password
       }).then(response => {
         response.json().then(data => {
-          console.log(data);
           auth.setUser(data.user);
           this.props.history.push(`/home/${data.user.id}`);
         })

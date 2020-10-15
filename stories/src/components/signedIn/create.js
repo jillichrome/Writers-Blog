@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header.js';
-//import auth from '../auth-helper.js';
+import auth from '../auth-helper.js';
+import { makeRequest } from '../../requests.js';
 
 class Create extends React.Component {
   state = {
@@ -17,28 +18,20 @@ class Create extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const options = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true'
-      },
-      credentials: 'include',
-      body: JSON.stringify({
+    if(this.state.title !== '' && this.state.story !== '') {
+      const user = auth.getUser();
+      makeRequest('POST', `/home/${user.id}/create`, {
         title: this.state.title,
         story: this.state.story
+      }).then(response => {
+        response.json().then(data => {
+          console.log(data);
+          alert("Story saved!")
+        });
+      }).catch(err => {
+        console.log(err);
       })
     }
-
-    fetch('/create', options).then(response => {
-      response.json().then(data => {
-        alert("Story successfully saved!");
-      });
-    }).catch(err => {
-      console.log(err);
-    })
 
     this.setState({title:'', story: ''});
   };

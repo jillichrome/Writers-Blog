@@ -1,7 +1,7 @@
 import React from 'react';
 import './signedIn.css';
 import Header from './header.js';
-import Post from './entries.js';
+//import Post from './entries.js';
 import Sidebar from '../home/sidebar.js';
 import auth from '../auth-helper.js';
 
@@ -21,7 +21,6 @@ class SignedIn extends React.Component {
             </header>
             <section>
               <h2 className='welcome'>Hi {user.firstName}!</h2>
-              <Post />
               <aside>
                 <Sidebar />
               </aside>

@@ -21,3 +21,24 @@ export async function makeRequest(method, url, data={}) {
     credentials: 'include'
   })
 }
+
+export async function getRequest(method, url) {
+  const user = await auth.getUser();
+  const headers = {
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Content-Type': 'application/json; charset=UTF-8',
+  }
+
+  if(user){
+    headers['Authorization'] = `Bearer ${user.token}`;
+  }
+
+  return await fetch(url, {
+    method: method,
+    headers: headers,
+    withCredentials: true,
+    credentials: 'include'
+  })
+}

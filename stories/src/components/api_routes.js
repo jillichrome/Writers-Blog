@@ -20,7 +20,11 @@ exports.signinUser = async(req, res) => {
     if (!user) {
       return res.status(401).send({msg: 'Invalid credentials!'});
     }
-    const token = jwt.sign({id: user._id}, JWT_KEY);
+    const userForToken = {
+      username: user.fistName,
+      id: user.id
+    }
+    const token = jwt.sign(userForToken, JWT_KEY);
     // [TODO] Need to set a cookie here also
     return res.json({
       user: {
@@ -57,14 +61,33 @@ exports.findUser = (req, res) => {
   return res.json(req.profile);
 }
 
-exports.submitStory = (req, res) => {
-  const post = new Post(req.body);
-  post.save((err, result) => {
-    if(err) {
-      return res.status(400).send({msg: "Failed to submit story"});
-    }
-    return res.status(200).send({msg: "New story saved!"})
-  })
+exports.submitStory = async(req, res) => {
+  try {
+    await User.findById(req.params.id, function(err, user) {
+      if(err) {return err}
+      /*
+      const token = user.token;
+      const decodedToken = jwt.verify(token, JWT_KEY);
+      console.log(decodedToken);
+      if(!token || !decodedToken.id) {
+        return res.status(401).json({error: 'token missing or invalid'})
+      }
+      */
+      const story = req.body;
+      if(story) {
+        user.post.push(story);
+      }
+      user.markModified('post');
+      user.save((err, result) => {
+        if(err) {
+          return res.status(400).send({msg: "Failed to submit story"});
+        }
+        return res.status(200).send({msg: "New story saved!"})
+      })
+    });
+  } catch(error) {
+    console.log(error);
+  }
 }
 
 exports.readStory = async(req, res) => {

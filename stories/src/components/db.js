@@ -25,8 +25,7 @@ app.post('/signup', router.createUser);
 app.post('/signin', router.signinUser);
 app.get('/home/:id', router.findUser);
 app.get('/home/:id', router.readStory);
-// app.param('/:id', router.findUserById);
-app.post('/create', router.submitStory);
+app.post('/home/:id/create', router.submitStory);
 app.get('/story/:title', router.readStory);
 
 app.listen(PORT, function() {

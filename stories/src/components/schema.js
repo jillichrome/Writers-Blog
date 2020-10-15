@@ -6,11 +6,20 @@ const Schema = mongoose.Schema;
 const saltrounds = 10;
 const JWT_KEY = 'COVID2020';
 
+const postSchema = new Schema({
+  title: String,
+  story: String,
+  date:{type: Date, default: Date.now}
+})
+
+//const Post = mongoose.model('Post', postSchema);
+
 const userSchema = new Schema({
   firstName: String,
   lastName: String,
   email: String,
-  password: String
+  password: String,
+  post: [ postSchema ]
 });
 
 userSchema.pre('save', function(next) {

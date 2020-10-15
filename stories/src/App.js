@@ -23,7 +23,7 @@ class App extends React.Component {
           <Route path='/signup' component={SignUp} />
           <Route path='/signin' component={SignIn} />
           <PrivateRoute component={SignedIn} path='/home/:id' exact />
-          <PrivateRoute path='/create' component={Create} />
+          <Route component={Create} path='/home/:id/create' exact />
           <Route path='/signout' component={SignedOut} />
         </Switch>
       </Router>

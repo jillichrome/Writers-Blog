@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import auth from '../auth-helper.js';
-import {makeRequest} from '../../requests.js';
+import {getRequest} from '../../requests.js';
 import './entries.css';
 
 
@@ -11,9 +11,8 @@ class Post extends React.Component {
   }
 
   componentDidMount = () => {
-    makeRequest('GET', `/home/${auth.getUser()}`).then(response => {
+    getRequest('GET', `/home/${auth.getUser()}`).then(response => {
       response.json().then(data => {
-        console.log(data);
         this.setState({
           post: data
         })
