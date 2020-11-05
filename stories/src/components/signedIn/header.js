@@ -13,7 +13,7 @@ export default class Header extends React.Component {
         <NavLink to={`/home/${user.id}/create`}><h5 className='up'>Create Story</h5></NavLink>
         <NavLink to='/signout' onClick={() => auth.signoutUser()}><h5 className='in'>Sign Out</h5></NavLink>
         <img src={require('./blog-header-background.jpg')} alt='' />
-        <Link to='/'><h1>LITERARY LARRY</h1></Link>
+        <Link to={`/home/${user.id}`}><h1>LITERARY LARRY</h1></Link>
       </header>
     )
   }

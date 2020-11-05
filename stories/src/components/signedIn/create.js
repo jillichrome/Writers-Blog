@@ -25,15 +25,13 @@ class Create extends React.Component {
         story: this.state.story
       }).then(response => {
         response.json().then(data => {
-          console.log(data);
           alert("Story saved!")
+          this.props.history.push(`/home/${user.id}`);
         });
       }).catch(err => {
         console.log(err);
       })
     }
-
-    this.setState({title:'', story: ''});
   };
 
   render() {

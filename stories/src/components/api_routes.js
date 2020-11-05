@@ -61,18 +61,31 @@ exports.findUser = (req, res) => {
   return res.json(req.profile);
 }
 
+const checkToken = (req, res, next) => {
+  const header = req.headers['authorization'];
+  if(typeof header !== 'undefined') {
+    const bearer = header.split(' ');
+    const token = bearer[1];
+    req.token = token;
+    next()
+  } else {
+    res.sendStatus(403);
+  }
+}
+
+exports.authorization = (req, res) => {
+  const token = req.token;
+  const decodedToken = jwt.verify(token, JWT_KEY);
+  if(!token || !decodedToken.id) {
+    return res.status(401).json({error: 'token missing or invalid'})
+  }
+}
+
 exports.submitStory = async(req, res) => {
   try {
     await User.findById(req.params.id, function(err, user) {
       if(err) {return err}
-      /*
-      const token = user.token;
-      const decodedToken = jwt.verify(token, JWT_KEY);
-      console.log(decodedToken);
-      if(!token || !decodedToken.id) {
-        return res.status(401).json({error: 'token missing or invalid'})
-      }
-      */
+
       const story = req.body;
       if(story) {
         user.post.push(story);
