@@ -14,12 +14,14 @@ class Home extends React.Component {
         <header>
           <Header />
         </header>
-        <section>
-          <Posts stories={stories} />
-          <aside>
+        <main>
+          <div class="half-width">
+            <Posts stories={stories} />
+          </div>
+          <div class="half-width">
             <Sidebar />
-          </aside>
-        </section>
+          </div>
+        </main>
       </div>
     );
   }

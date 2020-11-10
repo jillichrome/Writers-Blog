@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import './entries.css';
+import './home.css';
 
 const Post = ({story}) => {
   return(
@@ -18,7 +18,7 @@ const Post = ({story}) => {
 
 const Posts = ({stories}) => {
   return(
-    <div className='article'>
+    <div id="post" className='article'>
       { stories.map(story => {
         return(
           <article key={story.id}>

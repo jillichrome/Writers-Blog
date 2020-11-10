@@ -1,10 +1,10 @@
 import React from 'react';
-import './sidebar.css';
+import './home.css';
 
 export default class Sidebar extends React.Component {
   render() {
     return(
-      <div className='card'>
+      <div id="sidebar" className='card'>
         <div className='container'>
           <p className='section'>About Me</p>
           <h2>Larry Fronk</h2>

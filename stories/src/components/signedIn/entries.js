@@ -22,7 +22,7 @@ class Post extends React.Component {
 
   render() {
     return(
-      <div className='card'>
+      <div id="entry" className='card'>
         <div className='container'>
           <p className='heading'>{this.state.post.title}</p>
           <p>{this.state.post.date}</p>

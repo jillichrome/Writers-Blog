@@ -1,5 +1,6 @@
 import React from 'react';
 import './signedIn.css';
+import '../home/home.css';
 import Header from './header.js';
 //import Post from './entries.js';
 import Sidebar from '../home/sidebar.js';
@@ -19,12 +20,11 @@ class SignedIn extends React.Component {
             <header>
               <Header />
             </header>
-            <section>
+            <main>
               <h2 className='welcome'>Hi {user.firstName}!</h2>
-              <aside>
-                <Sidebar />
-              </aside>
-            </section>
+              <div className="half-width"></div>
+              <div className="half-width"></div>
+            </main>
           </div>
         )
       : (<div>Loading...</div>);
