@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header.js';
 import auth from '../auth-helper.js';
+import builder from '../story-helper.js';
 import { makeRequest } from '../../requests.js';
 
 class Create extends React.Component {
@@ -26,6 +27,7 @@ class Create extends React.Component {
       }).then(response => {
         response.json().then(data => {
           alert("Story saved!")
+          builder.setPost(data.post);
           this.props.history.push(`/home/${user.id}`);
         });
       }).catch(err => {

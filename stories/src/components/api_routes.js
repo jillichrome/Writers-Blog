@@ -32,7 +32,8 @@ exports.signinUser = async(req, res) => {
         id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
-        email: user.email
+        email: user.email,
+        post: user.post
       }
     });
   } catch(error) {
@@ -105,13 +106,17 @@ exports.submitStory = async(req, res) => {
 
 exports.readStory = async(req, res) => {
   try{
-    const post = await Post.findOne({title: req.body.title});
-    console.log(post);
-    return res.json({
-      post: {
-        title: post.title,
-        date: post.date,
-        story: post.story
+    await User.findOne(req.params.id, function(err, user) {
+      if(err) {return err};
+      const post = user.post;
+      if(user.post.title === req.params.title) {
+        return res.json({
+          post: {
+            title: user.post.title,
+            date: user.post.date,
+            story: user.post.story
+          }
+        })
       }
     });
   } catch(error) {

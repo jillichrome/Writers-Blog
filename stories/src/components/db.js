@@ -24,10 +24,9 @@ const router = require('./api_routes');
 app.post('/signup', router.createUser);
 app.post('/signin', router.signinUser);
 app.get('/home/:id', router.findUser);
-app.get('/home/:id', router.readStory);
 app.get('/home/:id', router.authorization);
 app.post('/home/:id/create', router.submitStory);
-app.get('/story/:title', router.readStory);
+app.get('/:id/story/:title', router.readStory);
 
 app.listen(PORT, function() {
   console.log('Server is running at PORT:', PORT);
