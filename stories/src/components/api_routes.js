@@ -1,5 +1,4 @@
 const User = require('./schema.js');
-const Post = require('./postSchema.js');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const JWT_KEY = 'COVID2020';
@@ -96,7 +95,7 @@ exports.submitStory = async(req, res) => {
         if(err) {
           return res.status(400).send({msg: "Failed to submit story"});
         }
-        return res.status(200).send({msg: "New story saved!"})
+        return res.json(result);
       })
     });
   } catch(error) {

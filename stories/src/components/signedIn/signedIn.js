@@ -1,22 +1,14 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import './signedIn.css';
 import '../home/home.css';
 import Header from './header.js';
-import Post from './entries.js';
-import Sidebar from '../home/sidebar.js';
+//import Sidebar from '../home/sidebar.js';
 import auth from '../auth-helper.js';
 
 class SignedIn extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: auth.getUser()
-    };
-  }
-
   render() {
-    const { user } = this.state;
+    const user = auth.getUser();
     return user.id
         ? (
           <div>
@@ -26,9 +18,21 @@ class SignedIn extends React.Component {
             <main>
               <h2 className='welcome'>Hi {user.firstName}!</h2>
               <div className="half-width">
-                <Post key={user.id} />
+                { user.post.map(post =>
+                  <div key={post["_id"]} id="entry" className='card'>
+                    <div>
+                      <div className='container'>
+                        <p className='heading'>{post["title"]}</p>
+                        <p>{post["date"]}</p>
+                      </div>
+                      <NavLink to={`/story/${post["title"]}`}><button>READ MORE!</button></NavLink>
+                      <button className='change'>Edit</button>
+                      <button className='delete'>Remove</button>
+                    </div>
+                  </div>
+                )
+              }
               </div>
-              <div className="half-width"></div>
             </main>
           </div>
         )

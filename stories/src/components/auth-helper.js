@@ -1,6 +1,7 @@
 //import { signoutUser } from './api-user.js';
 
 let user;
+let updatedUser;
 
 const auth = {
   setUser(newUser) {
@@ -14,6 +15,12 @@ const auth = {
 
   isAuthenticated() {
     return user.token ? true : false;
+  },
+
+  updateUser(currentUser) {
+    updatedUser = Object.assign({...user, ...currentUser});
+    user = updatedUser;
+    return user;
   },
 
   signOut() {

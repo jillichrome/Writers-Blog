@@ -6,15 +6,13 @@ import './auth.css';
 
 class SignIn extends React.Component {
   state = {
-    email: '',
-    password: '',
-    token: ''
+    email: "",
+    password: "",
+    token: ""
   }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.id] : e.target.value
-    })
+    this.setState({ [e.target.id] : e.target.value})
   }
 
   handleSubmit = (e) => {
