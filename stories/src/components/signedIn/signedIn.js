@@ -17,18 +17,16 @@ class SignedIn extends React.Component {
             </header>
             <main>
               <h2 className='welcome'>Hi {user.firstName}!</h2>
-              <div className="half-width">
+              <div className="flex-container">
                 { user.post.map(post =>
                   <div key={post["_id"]} id="entry" className='card'>
-                    <div>
-                      <div className='container'>
-                        <p className='heading'>{post["title"]}</p>
-                        <p>{post["date"]}</p>
-                      </div>
-                      <NavLink to={`/story/${post["title"]}`}><button>READ MORE!</button></NavLink>
-                      <button className='change'>Edit</button>
-                      <button className='delete'>Remove</button>
+                    <div className='container'>
+                      <p className='heading'>{post["title"]}</p>
+                      <p>{post["date"]}</p>
                     </div>
+                    <NavLink to={`/story/${post["title"]}`}><button>READ MORE!</button></NavLink>
+                    <button className='change'>Edit</button>
+                    <button className='delete'>Remove</button>
                   </div>
                 )
               }

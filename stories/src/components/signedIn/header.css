@@ -8,16 +8,17 @@ img {
 }
 h1 {
   position: absolute;
-  top: 75%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #ffffff;
   font-family: 'Inconsolata';
   font-weight: bold;
+  font-size: 22px;
 }
 .up {
   position: absolute;
-  left: 72%;
+  left: 65%;
   transform: translate(-50%, -50%);
   color: #ffffff;
   font-family: 'Inconsolata';
@@ -26,27 +27,37 @@ h1 {
 
 .in {
   position: absolute;
-  left: 80%;
+  left: 85%;
   transform: translate(-50%, -50%);
   color: #ffffff;
   font-family: 'Inconsolata';
   font-weight: bold;
 }
 
-@media (max-width:1200px) {
+@media (min-width:1200px) {
   img {
     max-width: 100%;
+  }
+  h1 {
+    font-size: 60px;
+    top: 70%;
   }
 }
 
-@media (max-width:600px) {
+@media (min-width:786px) {
   img {
     max-width: 100%;
   }
+  h1 {
+    font-size: 48px;
+    top: 65%;
+  }
   .up {
-    left: 72%;
+    font-size: 20px;
+    left: 75%;
   }
   .in {
-    left: 92%;
+    font-size: 20px;
+    left: 90%
   }
 }

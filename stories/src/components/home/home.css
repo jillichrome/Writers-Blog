@@ -14,29 +14,34 @@ main {
   overflow: auto;
   width: 100%;
 }
-.half-width {
-  float: left;
-  width: 50%;
+.wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
 }
-article {
-  padding-bottom: 5%;
+
+@media (min-width:768px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 600px 400px;
+    justify-content: space-evenly;
+  }
 }
-@media (max-width: 600px) {
-  article, aside {
-    width: 100%;
-    height: auto;
+
+@media (min-width:1200px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 800px 400px;
+    justify-content: space-evenly;
   }
 }
 
 /*** Entries ***/
-#post .article {
-  padding-bottom: 5%;
-}
 #post .card {
   background-color: #208078;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  float: left;
-  margin-left: 15%;
+  margin: 5%;
+  max-width: 400px;
 }
 #post .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -66,13 +71,25 @@ button {
   padding: 10px 24px;
 }
 
-@media (max-width:600px) {
-  #post .article {
-    width: 100%;
-    height:auto;
+@media (min-width:768px) {
+  #post .card {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 500px;
   }
-  img {
-    height:auto;
+  #post .container {
+    padding-right: 15%;
+  }
+  #post .card-img {
+    height: 75%;
+  }
+}
+
+@media (min-width:1200px) {
+  #post .card {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
   }
 }
 
@@ -84,9 +101,7 @@ button {
 #sidebar .container {
   background-color: #208078;
   padding: 2px 15px;
-  justify-content: flex-start;
-  margin-left: 25%;
-  width: 50%;
+  margin: 5%;
 }
 #sidebar .section {
   color: #ffffff;
@@ -107,4 +122,11 @@ button {
   color: #ffffff;
   font-family: 'Inconsolata';
   font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  #sidebar .card {
+    display: flex;
+
+  }
 }

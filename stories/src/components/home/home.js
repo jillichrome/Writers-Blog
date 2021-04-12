@@ -15,10 +15,8 @@ class Home extends React.Component {
           <Header />
         </header>
         <main>
-          <div class="half-width">
+          <div class="wrapper">
             <Posts stories={stories} />
-          </div>
-          <div class="half-width">
             <Sidebar />
           </div>
         </main>

@@ -10,36 +10,27 @@
 
 /*** SignedIn Home Page ***/
 main {
-  margin: 0 auto;
-  overflow: auto;
-  width: 100%;
+  margin: 0;
 }
-.half-width {
-  float: left;
-  width: 50%;
-}
-article {
-  padding-bottom: 5%;
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  max-width: 1200px;
 }
 .welcome {
-  margin-left: 50%;
+  margin-left: 30%;
   font-family: 'Inconsolata';
   color: #B34B15;
-}
-@media (max-width: 600px) {
-  article {
-    width: 100%;
-    height: auto;
-  }
+  font-size: 30px;
 }
 
 /*** Entry Card ***/
 #entry .card {
-  background-color: yellow;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  margin-left: 15%;
-  max-width: 100%;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #entry .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -67,29 +58,20 @@ button {
   padding: 10px 24px;
 }
 
-
-@media (max-width:1200px) {
-  .change {
-    left: 62%;
-  }
-  .delete {
-    left: 78%;
+@media (min-width: 768px) {
+  .welcome {
+    margin-left: 40%;
   }
 }
 
-@media (max-width:600px) {
-  .article {
-    width: 100%;
-    height:auto;
+@media (min-width:1200px) {
+  .welcome {
+    margin-left: 45%;
   }
-  img {
-    height:auto;
-  }
-  .change {
-    left: 52%;
-  }
-  .delete {
-    left: 72%;
+  #entry .card {
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
