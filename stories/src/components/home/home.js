@@ -1,7 +1,7 @@
 import React from 'react';
 import './home.css';
 import Header from '../header/header.js';
-import Posts from './entries';
+import Posts from './posts';
 import Sidebar from './sidebar';
 
 const data = require('../data.json');

@@ -1,7 +1,7 @@
 import React from 'react';
 import './signedOut.css';
 import Header from '../header/header.js';
-import Posts from '../home/entries';
+import Posts from '../home/posts';
 import Sidebar from '../home/sidebar.js';
 
 const data = require('../data.json');

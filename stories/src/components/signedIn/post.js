@@ -1,19 +1,17 @@
 import React from 'react';
 import Header from './header/header.js';
 import auth from '../auth-helper.js';
-import builder from '../story-helper.js';
 import {getRequest} from '../../requests.js';
 import './post.css';
 
-class Short extends React.Component {
+class Story extends React.Component {
   state = {
     title: '',
     story: ''
   }
   componentDidMount() {
     const user = auth.getUser();
-    const post = builder.getStory();
-    getRequest('GET', `/${user.id}/story/${post.title}`).then(response => {
+    getRequest('GET', `/${user.id}/story/${user.post.title}`).then(response => {
       response.json().then(data => {
         this.setState({title: data.title, story: data.story})
       });
@@ -50,4 +48,4 @@ class Short extends React.Component {
   }
 }
 
-export default Short;
+export default Storyt;

@@ -1,9 +1,7 @@
 import React from 'react';
 import { NavLink} from 'react-router-dom';
 import './signedIn.css';
-import '../home/home.css';
 import Header from './header.js';
-//import Sidebar from '../home/sidebar.js';
 import auth from '../auth-helper.js';
 
 class SignedIn extends React.Component {
