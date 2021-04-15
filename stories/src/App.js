@@ -4,7 +4,7 @@ import {Router, Switch, Route} from 'react-router-dom';
 import PrivateRoute from './privateRoute.js';
 
 import Home from './components/home/home.js';
-import Story from './components/story.js';
+import Story from './components/signedIn/post.js';
 import SignUp from './components/auth/signup.js';
 import SignIn from './components/auth/signin.js';
 import SignedIn from './components/signedIn/signedIn.js';

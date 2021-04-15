@@ -1,51 +1,35 @@
 import React from 'react';
-import Header from './header/header.js';
+import Header from './header.js';
 import auth from '../auth-helper.js';
-import {getRequest} from '../../requests.js';
-import './post.css';
+import './signedIn.css';
 
 class Story extends React.Component {
-  state = {
-    title: '',
-    story: ''
-  }
-  componentDidMount() {
-    const user = auth.getUser();
-    getRequest('GET', `/${user.id}/story/${user.post.title}`).then(response => {
-      response.json().then(data => {
-        this.setState({title: data.title, story: data.story})
-      });
-    }).catch(err => {
-      console.log(err);
-    })
-  }
-  render() {
-/*
 
-    const outputHtml = () => {
-      const info = story(stories);
-      const name = this.props.match.params.storyTitle;
-      if(name !== info["title"]) return null;
+  render() {
+    const user = auth.getUser();
+    const content = user.post.find( title => title["title"] === this.props.match.params.storyTitle);
+    const output = () => {
       return(
         <div>
-          <div className='storytitle'>{info["title"]}</div>
-          <div className='body'>{info["storyBody"]}</div>
+          <h2 className="storytitle">{content["title"]}</h2>
+          <p className="storybody">{content["story"]}</p>
         </div>
       )
     }
-*/
+
     return(
       <div>
         <header>
           <Header />
         </header>
         <section>
-          <h1>{this.state.title}</h1>
-          <p>{this.state.story}</p>
+          {
+            output()
+          }
         </section>
       </div>
     )
   }
 }
 
-export default Storyt;
+export default Story;
