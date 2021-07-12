@@ -5,6 +5,7 @@ const path = require('path');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const router = require('./router');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -18,15 +19,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-const router = require('./api_routes');
-
-app.post('/signup', router.createUser);
-app.post('/signin', router.signinUser);
-app.get('/home/:id', router.findUser);
-app.get('/home/:id', router.authorization);
-app.post('/home/:id/create', router.submitStory);
-app.get('/:id/story/:title', router.readStory);
+app.use('/', router);
 
 app.listen(PORT, function() {
   console.log('Server is running at PORT:', PORT);

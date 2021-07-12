@@ -25,6 +25,7 @@ class SignIn extends React.Component {
       }).then(response => {
         response.json().then(data => {
           auth.setUser(data.user);
+
           this.props.history.push(`/home/${data.user.id}`);
         })
       }).catch(err => {

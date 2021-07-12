@@ -1,5 +1,3 @@
-//import { signoutUser } from './api-user.js';
-
 let user;
 let updatedUser;
 

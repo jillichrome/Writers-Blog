@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const JWT_KEY = 'COVID2020';
 
+//create user
 exports.createUser = (req, res) => {
   const user = new User(req.body);
   user.save((err, result) => {
@@ -80,7 +81,7 @@ exports.authorization = (req, res) => {
     return res.status(401).json({error: 'token missing or invalid'})
   }
 }
-
+//create story
 exports.submitStory = async(req, res) => {
   try {
     await User.findById(req.params.id, function(err, user) {
@@ -103,6 +104,7 @@ exports.submitStory = async(req, res) => {
   }
 }
 
+//read story
 exports.readStory = async(req, res) => {
   try{
     await User.findOne(req.params.id, function(err, user) {
@@ -118,6 +120,16 @@ exports.readStory = async(req, res) => {
         })
       }
     });
+  } catch(error) {
+    console.log(error);
+  }
+}
+
+//delete story
+exports.deleteStory = async(req, res) => {
+  try {
+    await User.updateOne( {}, { $pull: {post: {_id: req.params.postId}}});
+    return res.status(204);
   } catch(error) {
     console.log(error);
   }
